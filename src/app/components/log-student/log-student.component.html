@@ -1,0 +1,28 @@
+<div class="col">
+
+    <p>
+        <label>Student Name</label>
+        <input class="form-control" type="text" [(ngModel)]="studentInfo.name">
+    </p>
+    <p>
+        <label>Student Last Name</label>
+        <input class="form-control" type="text" [(ngModel)]="studentInfo.lastName">
+    </p>
+    <p>
+        <label>Class</label>
+        <input class="form-control" type="text" [(ngModel)]="studentInfo.class">
+    </p>
+    <p>
+        <label>BirthDay</label>
+        <input class="form-control" type="text" [(ngModel)]="studentInfo.dob">
+    </p>
+    <p>
+        <label>Year</label>
+        <input class="form-control" type="number" [(ngModel)]="studentInfo.year">
+    </p>
+    <p>
+        <label>CMUS</label>
+        <input class="form-control" type="text" [(ngModel)]="studentInfo.cmus">
+    </p>
+    <button class="btn btn-primary" (click)="addStudent()">Submit</button>
+</div>
