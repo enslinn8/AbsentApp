@@ -13,13 +13,19 @@ import { LogStudentComponent } from './components/log-student/log-student.compon
 import { environment } from 'src/environments/environment';
 import { ListStudentsComponent } from './components/list-students/list-students.component';
 import { LoggingComponent } from './components/logging/logging.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { AddStudentComponent } from './pages/add-student/add-student.component';
+import { ReportComponent } from './pages/report/report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogStudentComponent,
     ListStudentsComponent,
-    LoggingComponent
+    LoggingComponent,
+    HomePageComponent,
+    AddStudentComponent,
+    ReportComponent
   ],
   imports: [FormsModule,
     BrowserModule,

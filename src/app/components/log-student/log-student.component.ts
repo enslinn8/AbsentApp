@@ -14,8 +14,8 @@ export class LogStudentComponent implements OnInit {
     lastName: "Leroux",
     dob: "1990/12/10",
     cmus: "Enter CMUS",
-    class: "1",
-    year: 2
+    class: "A",
+    year: 1
   }
   ngOnInit(): void {
   }

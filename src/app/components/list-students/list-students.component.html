@@ -1,8 +1,16 @@
 <h3>Students</h3>
 <div *ngFor="let student of studentList">
-    <div *ngIf   ='student.class === selectedClass && student.year === selectedYear'>
-        <strong>{{student.lastName}}</strong> {{student.name}}
-        <button class="btn btn-primary m-1 btn-sm">Present</button>
-        <button class=" btn btn-danger m-1 btn-sm">Absent</button>
+    <div *ngIf='student.class === selectedClass && student.year === selectedYear'>
+        <div class="row">
+            <strong>{{student.lastName}}</strong> {{student.name}}
+            <button class="btn btn-primary m-1 btn-sm" (click)='log(student,true)'>Present</button>
+            <button class=" btn btn-danger m-1 btn-sm" (click)='log(student,false)'>Absent</button>
+            <div *ngIf='student.present!==undefined'>
+                <div *ngIf="student.present==true; then thenBlock; else elseBlock"></div>
+            </div>
+        </div>
     </div>
 </div>
+
+<ng-template #thenBlock>P</ng-template>
+<ng-template #elseBlock>A</ng-template>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggingService } from 'src/app/services/logging.service';
+import { LogEntry } from 'src/app/shared/log-entry';
 import { Student } from 'src/app/shared/student';
 import { StudentsService } from "../../services/students.service";
 @Component({
@@ -13,12 +15,10 @@ export class LoggingComponent implements OnInit {
   yearClasses: string[];
   selectedYear: number;
   selectedClass: string;
-  constructor(private studentService: StudentsService) { }
+  constructor(private studentService: StudentsService, private logService: LoggingService) { }
 
   ngOnInit(): void {
     this.loadStudents();
-
-
   }
   loadStudents() {
     this.studentService.getAllStudent().subscribe(data => {
@@ -62,5 +62,42 @@ export class LoggingComponent implements OnInit {
 
     this.selectedYear = year.year;
     this.yearClasses = year.class
+  }
+  save() {
+    try {
+      const getDate = () => {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        return `${yyyy}/${mm}/${dd}`;
+
+      }
+      const getDayOfWeek = () => {
+        var d = new Date();
+        return d.getDay();
+      }
+      this.studentList.forEach(student => {
+        if (student.class == this.selectedClass && student.year == this.selectedYear) {
+          if (student.present === undefined) throw new Error('please log all students in class');
+          let entry: LogEntry = {
+            name: student.name,
+            lastName: student.lastName,
+            date: getDate(),
+            yearGroup: student.year,
+            class: student.class,
+            attended: student.present,
+            dayOfWeek: getDayOfWeek()
+
+          }
+          this.logService.logEntry(entry)
+        }
+      })
+
+    } catch (e) {
+      alert(e)
+    }
+
   }
 }
